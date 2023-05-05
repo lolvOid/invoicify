@@ -1,5 +1,3 @@
-![Maintenance](https://img.shields.io/maintenance/no/2022?label=Maintained%3F&style=for-the-badge)
-
 # INVOICIFY
 
 ****Simple invoice with Vite + Vue3 + Tailwind****
