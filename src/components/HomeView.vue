@@ -179,6 +179,7 @@ export default {
     name: 'HomeView',
     data() {
         return {
+            selectedLogo: null,
             navLinks: [
                 {
                     icon: 'fa-regular fa-save',
@@ -200,8 +201,13 @@ export default {
     },
     methods: {
         onFileSelected(event) {
-            console.log(event)
+            this.selectedLogo = new Image()
+            this.selectedLogo.onload(function (e) {
+                console.log(e)
+            })
+            this.selectedLogo.src = e.target.result
         },
+        onUpload() {},
     },
 }
 </script>
