@@ -23,7 +23,7 @@
   <div class="relative  text-gray-900 w-screen flex h-full ">
 
     <div class="w-[30%] h-[calc(100%-60px)] mt-[60px] p-4">
-      <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4">
+      <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4 overflow-y-auto over">
 
         <div class="w-full p-4 border-b-2">
 
@@ -44,58 +44,68 @@
           <ul class="image-list" v-show="files.length">
             <FilePreview v-for="file of files" :key="file.id" :file="file" tag="li" />
           </ul> -->
-    
+
           <label class="block mt-5">
             <span class="sr-only">Choose company logo</span>
-            <input type="file" class="block w-full text-sm text-gray-500
-              file:mr-4 file:py-2 file:px-4
-              file:rounded-0 file:border-0
-              file:text-sm file:font-semibold
-              file:bg-gray-100 file:text-gray-800
-              hover:file:bg-gray-200
-            "/>
+            <image-input @selected-image="logo"></image-input>
+
           </label>
         </div>
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Header</h2>
-          <div class="mt-2 ">
-            <label class="mr-5">Invoice No:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="12334435345"/>
+          <div>
+
+            <input-text label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
+          </div>
+
+          <div class="mt-2">
+            <label>Invoice Date:</label>
+
+
+            <div class="relative max-w-sm">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 light:text-gray-400" fill="currentColor"
+                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <input datepicker type="text"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+                placeholder="Select date">
+            </div>
+
+
           </div>
 
           <div class="mt-2 ">
-            <label class="mr-2">Invoice Date:</label>
-            <input type="date" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="12334435345"/>
+            <label>Due Date:</label>
+            <input type="date" class=" w-full rounded-md p-1 border-2 bg-slate-200" placeholder="12334435345" />
           </div>
 
-          <div class="mt-2 ">
-            <label class="mr-7">Due Date:</label>
-            <input type="date" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="12334435345"/>
-          </div>
-          
 
         </div>
-            <div class="w-full p-4 border-b-2">
+        <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Issue</h2>
-            <div class="mt-2 ">
-            <label class="mr-1">Invoice To:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="Name"/>
+          <div class="mt-2 ">
+
+            <input-text label="Invoice To:" placeholder="Name" @dataValue="setInvoiceTo" />
+
           </div>
 
           <div class="mt-2 ">
-            <label class="mr-8">Phone:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="12334435345"/>
+            <input-text type="tel" label="Phone:" placeholder="01-2345-56789" @dataValue="setPhoneNumber" />
           </div>
 
+
           <div class="mt-2 ">
-            <label class="mr-10">Email:</label>
-            <input type="email" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="Email"/>
+            <input-text type="email" label="Email:" placeholder="customer@email.com" @dataValue="setEmail" />
           </div>
           <div class="mt-2 ">
-            <label class="mr-5">Address:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="Address"/>
+            <input-textarea label="Address:" placeholder="Address" @dataValue="setAddress" />
           </div>
         </div>
         <div class="w-full p-4 border-b-2">
@@ -107,32 +117,26 @@
 
           <h2 class="text-lg font-semibold">Payment Information</h2>
           <div class="mt-2 ">
-            <label class="mr-9">Bank Name:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="Bank Name"/>
+            <input-text type="text" label="Bank Name:" placeholder="Bank Name" @dataValue="setBankName" />
           </div>
           <div class="mt-2 ">
-            <label class="mr-5">Bank Account:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="Bank Account"/>
+            <input-text type="text" label="Bank Account No:" placeholder="Bank Account"
+              @dataValue="setBankAccountNumber" />
           </div>
-       
+
         </div>
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Authorization</h2>
-          
+
           <label class="block mt-5">
             <span class="sr-only">Signuature</span>
-            <input type="file" class="block w-full text-sm text-gray-500
-              file:mr-4 file:py-2 file:px-4
-              file:rounded-0 file:border-0
-              file:text-sm file:font-semibold
-              file:bg-gray-100 file:text-gray-800
-              hover:file:bg-gray-200
-            "/>
+            <image-input @selected-image="signature"></image-input>
           </label>
           <div class="mt-2 ">
-            <label class="mr-5">Authorized Name:</label>
-            <input type="text" class=" rounded-md p-1 border-2 bg-slate-200" placeholder="Name"/>
+            <div class="mt-2 ">
+              <input-text type="text" label="Name" placeholder="Name" @dataValue="setAuthroizedName" />
+            </div>
           </div>
         </div>
       </form>
@@ -142,13 +146,16 @@
         <div class="relative shadow-md  md:scale-75 lg:scale-100   w-[21cm] h-[27.9cm] bg-white p-[0.5in] ">
           <div class="relative border-b-2  w-full h-[15%]">
             <div class="absolute top-5 left-5 w-[100px] h-[100px]">
-              <img src="https://via.placeholder.com/100x100/ccc.png" />
+              <image-preview :imgData="selectedLogo" />
+              <!-- <img class="w-full h-full object-cover"  :src='selectedLogo ? selectedLogo : "https://via.placeholder.com/100x100/ccc.png"' /> -->
+
+
             </div>
             <div class="absolute top-5 right-5 w-auto max-h-full flex flex-col">
 
               <div class="text-2xl font-bold">INVOICE</div>
               <div class="text-sm">
-                Invoice No: 12345
+                Invoice No: {{ invoiceNumber }}
               </div>
               <div class="text-sm">
                 Date: 12345
@@ -162,16 +169,16 @@
           <div class="w-full mt-2 h-auto pl-5">
             <div class="flex flex-col">
               <div class="text-sm">
-                Invoice To:Name
+                Invoice To: {{ invoiceTo }}
               </div>
               <div class="text-sm">
-                Phone: Number
+                Phone: {{ phoneNumber }}
               </div>
               <div class="text-sm">
-                Email: email@email.com
+                Email: {{ emailAddress }}
               </div>
               <div class="text-sm">
-                Address: Minim ad consectetur eiusmod reprehenderit quis consequat tempor.
+                Address: {{ address }}
               </div>
             </div>
           </div>
@@ -198,15 +205,14 @@
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center p-[0.5in] pt-0">
             <div class="flex flex-col h-full items-start ">
               <div class="font-bold text-base">Payment Information</div>
-              <div class="text-sm">Bank Name: BN</div>
-              <div class="text-sm">Bank Account No: 1234567678</div>
+              <div class="text-sm">Bank Name: {{ bankName }}</div>
+              <div class="text-sm">Bank Account No: {{ bankAccount }}</div>
             </div>
             <div class="flex flex-col h-full items-center ">
               <div class="p-2 w-[100px] h-[100px]">
-                <img src="https://via.placeholder.com/100x100/ccc.png" />
-                
+                <image-preview :imgData="selectedSignature" />
               </div>
-              <div class=" text-sm">Name</div>
+              <div class=" text-sm">{{ authorziedName }}</div>
             </div>
           </div>
 
@@ -216,28 +222,88 @@
 
   </div>
 </template>
-<script setup>
+<script>
+import "flowbite/dist/datepicker"
 
-
-
-const navLinks = [
-  {
-    icon: "fa-regular fa-save",
-    name: "Save",
-    link: "/"
+export default {
+  name: "HomeView",
+  data() {
+    return {
+      invoiceNumber: '0',
+      invoiceTo: "Required",
+      emailAddress: "Required",
+      phoneNumber: "",
+      address: "",
+      bankName: "Required",
+      bankAccount: "Required",
+      authorziedName: "Required",
+      selectedLogo: "https://via.placeholder.com/100x100/ccc.png",
+      selectedSignature: "https://via.placeholder.com/100x100/ccc.png",
+      navLinks: [
+        {
+          icon: "fa-solid fa-print",
+          name: "Print",
+          link: "/"
+        }, 
+        {
+          icon: "fa-solid fa-file-pdf",
+          name: "Print",
+          link: "/"
+        },
+        {
+          icon: "fa-regular fa-save",
+          name: "Save",
+          link: "/"
+        },
+        {
+          icon: "fa-brands fa-google-drive",
+          name: "Google Drive",
+          link: "/"
+        },
+        {
+          icon: "fa-brands fa-github",
+          name: "Github",
+          link: "https://github.com/lolvoid/invoicify"
+        }
+      ]
+    };
   },
-  {
-    icon: "fa-brands fa-google-drive",
-    name: "Google Drive",
-    link: "/"
-  },
-  {
-    icon: "fa-brands fa-github",
-    name: "Github",
-    link: "https://github.com/lolvoid/invoicify"
+
+  methods: {
+    setBankName(data) {
+      this.bankName = data;
+    },
+    setBankAccountNumber(data) {
+      this.bankAccount = data;
+    }, setAuthroizedName(data) {
+      this.authorziedName = data;
+    },
+    setPhoneNumber(data) {
+      this.phoneNumber = data;
+    },
+    setInvoiceNumber(data) {
+      this.invoiceNumber = data;
+    },
+    setInvoiceTo(data) {
+      this.invoiceTo = data;
+    },
+    setEmail(data) {
+      this.emailAddress = data;
+    },
+    setAddress(data) {
+      this.address = data;
+    },
+    logo(data) {
+      this.selectedLogo = data;
+    },
+    signature(data) {
+      this.selectedSignature = data;
+    }
   }
+}
 
-]
 
 
 </script>
+
+<style scoped></style>

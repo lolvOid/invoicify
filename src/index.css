@@ -7,4 +7,9 @@
 body,html{
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
+
+input::-webkit-calendar-picker-indicator {
+    display: none;
+  }

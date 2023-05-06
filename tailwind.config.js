@@ -1,13 +1,16 @@
 // tailwind.config.js
 module.exports = {
-	content: ['./src/*.{js,jsx}', './src/**/*.{js,jsx}'],
+	content: ['./src/*.{js,jsx}', './src/**/*.{js,jsx}', "./node_modules/flowbite/**/*.js"],
 	purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
 	darkMode: false, // or 'media' or 'class'
-	theme: {
+	theme:{
 		extend: {},
 	},
 	variants: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [
+        require('flowbite/plugin')
+    ]
+
 }

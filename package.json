@@ -13,6 +13,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/vue-fontawesome": "^3.0.3",
         "@heroicons/vue": "^2.0.17",
+        "flowbite": "^1.6.5",
         "vite": "^2.9.6",
         "vue": "^3.2.16",
         "vue-router": "^4.0.11",
