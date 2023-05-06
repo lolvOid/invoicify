@@ -9,13 +9,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faGithub, faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
-import { faFileExport, faFilePdf, faPrint, faShare, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faFileExport, faFilePdf, faFileWord, faPrint, faShare, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faSave } from '@fortawesome/free-regular-svg-icons'
 import ImageFileInput from "./components/ImageFileInput.vue";
 import ImagePreview from "./components/ImagePreview.vue";
 import InputTextField from "./components/InputTextField.vue";
 import InputTextArea from "./components/InputTextArea.vue";
-library.add(faGithub,faShare,faFileExport,faUpload,faSave,faGoogleDrive,faPrint,faFilePdf)
+library.add(faGithub,faShare,faFileExport,faUpload,faSave,faGoogleDrive,faPrint,faFilePdf,faFileWord)
 const app = createApp(App);
 app.use(router);
 app.use(store);

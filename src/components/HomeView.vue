@@ -12,7 +12,7 @@
     <ul
       class="md:flex md:items-center md:px-0 px-3 md:pb-0 pb:10 md:static fixed md:text-gray-100 bottom-2  right-2 duration-75 ease-in text-3xl text-gray-800 ">
       <li class="md:mx-4 md:my-0 my-6" v-for="navLink in navLinks" :key="navLink.name">
-        <a :href="navLink.link" :aria-label="navLink.link" class="hover:text-orange-500">
+        <a :href="navLink.link" :aria-label="navLink.link" class="hover:text-orange-500" @click="navLink.action">
 
           <fa-icon :icon=navLink.icon></fa-icon>
         </a>
@@ -59,7 +59,7 @@
             <input-text label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
           </div>
 
-          <div class="mt-2">
+          <div class="mt-2 w-full">
             <label>Invoice Date:</label>
 
 
@@ -72,8 +72,8 @@
                     clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <input datepicker type="text"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+              <input datepicker datepicker-autohide type="text"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
                 placeholder="Select date">
             </div>
 
@@ -82,7 +82,21 @@
 
           <div class="mt-2 ">
             <label>Due Date:</label>
-            <input type="date" class=" w-full rounded-md p-1 border-2 bg-slate-200" placeholder="12334435345" />
+
+
+            <div class="relative max-w-sm">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 light:text-gray-400" fill="currentColor"
+                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <input datepicker datepicker-autohide type="text"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+                placeholder="Select date">
+            </div>
           </div>
 
 
@@ -143,7 +157,8 @@
     </div>
     <div class="w-full  bg-gray-50 h-[calc(100%-60px)] mt-[60px] flex items-center justify-center">
       <div class="w-full h-full  flex items-center justify-center">
-        <div class="relative shadow-md  md:scale-75 lg:scale-100   w-[21cm] h-[27.9cm] bg-white p-[0.5in] ">
+        <div class="relative shadow-md  md:scale-75 lg:scale-100   w-[21cm] h-[27.9cm] bg-white p-[0.5in] "
+          id="document_page" ref="invoiceContent">
           <div class="relative border-b-2  w-full h-[15%]">
             <div class="absolute top-5 left-5 w-[100px] h-[100px]">
               <image-preview :imgData="selectedLogo" />
@@ -223,10 +238,11 @@
   </div>
 </template>
 <script>
-import "flowbite/dist/datepicker"
 
+import html2pdf from "html2pdf.js"
 export default {
   name: "HomeView",
+
   data() {
     return {
       invoiceNumber: '0',
@@ -239,37 +255,64 @@ export default {
       authorziedName: "Required",
       selectedLogo: "https://via.placeholder.com/100x100/ccc.png",
       selectedSignature: "https://via.placeholder.com/100x100/ccc.png",
+      navAction: null,
       navLinks: [
         {
           icon: "fa-solid fa-print",
           name: "Print",
-          link: "/"
-        }, 
-        {
-          icon: "fa-solid fa-file-pdf",
-          name: "Print",
-          link: "/"
+          link: "#",
+          action: null,
         },
         {
-          icon: "fa-regular fa-save",
-          name: "Save",
-          link: "/"
+          icon: "fa-solid fa-file-pdf",
+          name: "PDF",
+          link: "#",
+          action: () => {
+            var element = document.getElementById("document_page");
+            var opt = {
+              margin: 0,
+              filename: 'generated_invoicify.pdf',
+              image: { type: 'jpeg', quality: 0.98 },
+              html2canvas: { scale: 2 },
+              jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+
+            html2pdf().from(element).set(opt).save();
+
+          },
+        },
+        {
+          icon: "fa-solid fa-file-word",
+          name: "Word",
+          link: "#",
+          action: () => {
+
+          }
         },
         {
           icon: "fa-brands fa-google-drive",
           name: "Google Drive",
-          link: "/"
+          link: "#",
+          action: null,
         },
         {
           icon: "fa-brands fa-github",
           name: "Github",
-          link: "https://github.com/lolvoid/invoicify"
+          link: "https://github.com/lolvoid/invoicify",
+          action: null,
         }
       ]
     };
   },
 
   methods: {
+    handleNavAction: function (e) {
+      this.navAction = e;
+    },
+    exportPDF() {
+
+    },
     setBankName(data) {
       this.bankName = data;
     },
