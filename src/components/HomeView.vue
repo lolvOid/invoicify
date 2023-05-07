@@ -4,7 +4,7 @@
 
     <div class="flex items-center ">
       <a href="/" class="flex text-xl hover:text-orange-500 hover:cursor-pointer">
-        <img class="h-8 w-auto mr-2" src="../assets/invoicify.svg" />
+        <img class="h-8 w-auto mr-2" :src='brandLogo' />
         <h2 class="font-bold">INVOICIFY</h2>
       </a>
     </div>
@@ -330,7 +330,8 @@
 import "flowbite/dist/datepicker";
 import html2pdf from "html2pdf.js";
 import moment from "moment"
-
+import logoInvoicify from "../assets/invoicify.png";
+console.log(logoInvoicify)
 export default {
   name: "HomeView",
 
@@ -348,6 +349,7 @@ export default {
       selectedLogo: "https://via.placeholder.com/100x100/ccc.png",
       selectedSignature: "https://via.placeholder.com/100x100/ccc.png",
       navAction: null,
+      brandLogo:logoInvoicify,
       navLinks: [
 
         {
