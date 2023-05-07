@@ -10,7 +10,15 @@ const stack = computed(() => {
 const login = () => {
     event('login', { method: 'Google' })
 }
-
+const head = () => {
+    return {
+        title: 'INVOICIFY',
+        meta: [
+            { name: 'description', content: 'Simple Invoice Builder' }
+        ]
+    }
+}
+head();
 login();
 </script>
 

@@ -18,6 +18,7 @@ import InputTextArea from './components/InputTextArea.vue'
 import DataRow from './components/DataRow.vue'
 import TableRow from './components/TableRow.vue'
 import VueGtagPlugin from 'vue-gtag'
+import { createHead } from '@vueuse/head'
 
 library.add(faGithub, faShare, faFileExport, faUpload, faSave, faGoogleDrive, faPrint, faFilePdf, faFileWord, faTrash, faPlus, faMultiply)
 
@@ -29,10 +30,13 @@ const gtagOpts = {
         },
     },
 }
+const head = createHead()
 const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(VueGtagPlugin,gtagOpts);
+
+app.use(head)
 app.component('fa-icon', FontAwesomeIcon)
 app.component('image-input', ImageFileInput)
 app.component('image-preview', ImagePreview)

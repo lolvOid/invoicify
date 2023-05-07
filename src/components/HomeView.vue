@@ -334,7 +334,7 @@ import logoInvoicify from "../assets/invoicify.png";
 
 export default {
   name: "HomeView",
-
+ 
   data() {
     return {
       invoiceNumber: `INV-${moment().format("YYYYMMYY")}-${Math.round(Math.random() * 4000)}`,
@@ -349,7 +349,7 @@ export default {
       selectedLogo: "https://via.placeholder.com/100x100/ccc.png",
       selectedSignature: "https://via.placeholder.com/100x100/ccc.png",
       navAction: null,
-      brandLogo:logoInvoicify,
+      brandLogo: logoInvoicify,
       navLinks: [
 
         {
@@ -482,7 +482,7 @@ export default {
       this.invoiceNumber = data;
     },
     setDueDate(data) {
-      
+
       this.dueDate = data;
 
     },
