@@ -331,7 +331,7 @@ import "flowbite/dist/datepicker";
 import html2pdf from "html2pdf.js";
 import moment from "moment"
 import logoInvoicify from "../assets/invoicify.png";
-console.log(logoInvoicify)
+
 export default {
   name: "HomeView",
 
