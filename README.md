@@ -1,6 +1,7 @@
 # INVOICIFY
 
-****Simple invoice with Vite + Vue3 + Tailwind****
+****Simple invoice builder****
+Author: Freddie Lin
 
 ### Stack
 
@@ -11,7 +12,9 @@
 - eslint
 - prettier
 
-Additionally I added [vite-svg-loader](https://github.com/jpkleemans/vite-svg-loader#readme) to support SVG imports.
+Third Party Libraries
+
+- html2pdf for exporting PDF files
 
 ### Run / Develop
 
