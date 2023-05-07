@@ -2,7 +2,7 @@ import { createApp } from 'vue/dist/vue.esm-bundler'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './index.css'
+import './index.css';
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 

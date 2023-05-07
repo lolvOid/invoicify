@@ -10,11 +10,11 @@
                     @dataValue="(value = 'Description') => $emit('dataValue', value, item.id, 'description')" />
             </div>
             <div class="mt-2">
-                <input-text inputType="text" label="Quantity" :placeholder="'Quantity'" :maxLength="6"
+                <input-text inputType="text" label="Quantity" :placeholder="'Quantity'" :maxLength="5"
                     @dataValue="(value = 1) => $emit('dataValue', value, item.id, 'quantity')" />
             </div>
             <div class="mt-2">
-                <input-text inputType="text" label="Price" :placeholder="'Price'" :maxLength="6"
+                <input-text inputType="text" label="Price" :placeholder="'Price'" :maxLength="15"
                     @dataValue="(value = 0) => $emit('dataValue', value, item.id, 'price')" />
             </div>
 

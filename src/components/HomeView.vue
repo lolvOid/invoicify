@@ -34,32 +34,22 @@
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Logo</h2>
-          <!-- <DropZone class="drop-area" @files-dropped="addFiles" #default="{ dropZoneActive }">
-            <div v-if="dropZoneActive">
-              <div>Drop Them</div>
-            </div>
-            <div v-else>
-              <div>Drag Your Files Here</div>
-            </div>
-          </DropZone>
-          <ul class="image-list" v-show="files.length">
-            <FilePreview v-for="file of files" :key="file.id" :file="file" tag="li" />
-          </ul> -->
+         
 
           <label class="block mt-5">
-            <span class="sr-only">Choose company logo</span>
-            <image-input @selected-image="logo"></image-input>
+            
+            <image-input @selected-image="logo" label="Upload Company Logo (1:1)"></image-input>
 
           </label>
         </div>
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Header</h2>
+          <h2 class="text-lg font-semibold mb-2">Header</h2>
           <div>
 
             <input-text :maxLength="10" label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
           </div>
-
+          <!-- 
           <div class="mt-2 w-full">
             <label>Invoice Date:</label>
 
@@ -79,7 +69,7 @@
             </div>
 
 
-          </div>
+          </div> -->
 
           <div class="mt-2 ">
             <label>Due Date:</label>
@@ -112,7 +102,7 @@
           </div>
 
           <div class="mt-2 ">
-            <input-text :maxLength="10" inputType="tel" label="Phone:" placeholder="01-2345-56789"
+            <input-text :maxLength="15" inputType="tel" label="Phone:" placeholder="+1-12345-56789"
               @dataValue="setPhoneNumber" />
           </div>
 
@@ -129,17 +119,20 @@
 
           <h2 class="text-lg font-semibold">Data</h2>
           <div class="mt-2 ">
-            <input-text :maxLength="2" inputType="text" label="Commercial Tax(%):" :placeholder="commercialTax.toString()" @dataValue="setCommercialTax" />
+            <input-text :maxLength="2" inputType="text" label="Commercial Tax(%):" :placeholder="commercialTax.toString()"
+              @dataValue="setCommercialTax" />
           </div>
           <div class="mt-2 ">
-            <input-text :maxLength="2" inputType="text" label="Discount(%):" :placeholder="discount.toString()" @dataValue="setDiscount" />
+            <input-text :maxLength="2" inputType="text" label="Discount(%):" :placeholder="discount.toString()"
+              @dataValue="setDiscount" />
           </div>
           <div class="mt-2">
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Currency</label>
             <select id="currencies"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" @change="setCurrency">
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+              @change="setCurrency">
               <option v-for="c in currency" :key="c.format" :value="c.currency">{{ c.currency }}</option>
-              
+
             </select>
           </div>
           <button type="button"
@@ -184,7 +177,7 @@
 
           <label class="block mt-5">
             <span class="sr-only">Signuature</span>
-            <image-input @selected-image="signature"></image-input>
+            <image-input @selected-image="signature" label="Upload Signature"></image-input>
           </label>
           <div class="mt-2 ">
             <div class="mt-2 ">
@@ -213,7 +206,7 @@
                 Invoice No: {{ invoiceNumber }}
               </div>
               <div class="text-sm">
-                Date: 12345
+                Date: {{ invoiceDate }}
               </div>
               <div class="text-sm">
                 Due Date: 12345
@@ -258,7 +251,7 @@
                 </tr>
               </thead>
               <tbody>
-                <table-row :itemsData="itemsData" :currency="currentCurrency"/>
+                <table-row :itemsData="itemsData" :currency="currentCurrency" />
 
               </tbody>
               <tfoot>
@@ -266,14 +259,14 @@
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right">Total:</td>
-                  <td class="px-2 py-1 ">{{ changeCurrency(total,currentCurrency) }}</td>
+                  <td class="px-2 py-1 ">{{ changeCurrency(total, currentCurrency) }}</td>
                 </tr>
 
                 <tr class="font-semibold text-gray-900 light:text-white">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right">Subtotal:</td>
-                  <td class="px-2 py-1">{{ changeCurrency(subtotal,currentCurrency) }}</td>
+                  <td class="px-2 py-1">{{ changeCurrency(subtotal, currentCurrency) }}</td>
                 </tr>
                 <tr class="font-semibold text-gray-900 light:text-white">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
@@ -314,14 +307,17 @@
 </template>
 <script>
 import "flowbite/dist/datepicker";
-import html2pdf from "html2pdf.js"
+import html2pdf from "html2pdf.js";
+
+
 export default {
   name: "HomeView",
-
+ 
   data() {
     return {
-      invoiceNumber: '0',
+      invoiceNumber: `INV-${new Date(Date.now()).getFullYear()}-${new Date(Date.now()).getMonth()}-${new Date(Date.now()).getDate()}-${Math.round(Math.random() * 4000)}`,
       invoiceTo: "Required",
+      invoiceDate: `${new Date(Date.now()).getDate().length > 1 ? new Date(Date.now()).getDate() : "0" + new Date(Date.now()).getDate()}/${new Date(Date.now()).getMonth().length > 1 ? new Date(Date.now()).getMonth() : "0" + new Date(Date.now()).getMonth()}/${new Date(Date.now()).getFullYear()}`,
       emailAddress: "Required",
       phoneNumber: "",
       address: "",
@@ -332,13 +328,7 @@ export default {
       selectedSignature: "https://via.placeholder.com/100x100/ccc.png",
       navAction: null,
       navLinks: [
-        {
-          icon: "fa-solid fa-print",
-          name: "Print",
-          link: "#",
-          target: "_self",
-          action: null,
-        },
+
         {
           icon: "fa-solid fa-file-pdf",
           name: "PDF",
@@ -348,7 +338,7 @@ export default {
             var element = document.getElementById("document_page");
             var opt = {
               margin: 0,
-              filename: 'generated_invoicify.pdf',
+              filename: `${Math.round(Math.random() * 100 * Date.now())}_invoicify.pdf`,
               image: { type: 'jpeg', quality: 0.98 },
               html2canvas: { scale: 2 },
               jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
@@ -389,11 +379,11 @@ export default {
       subtotal: 0,
       commercialTax: 5,
       discount: 0,
-      currentCurrency:{
-        
-          format: 'en-us',
-          currency: 'USD',
-       
+      currentCurrency: {
+
+        format: 'en-us',
+        currency: 'USD',
+
       },
       currency: {
         'USD': {
@@ -441,11 +431,11 @@ export default {
     handleNavAction: function (e) {
       this.navAction = e;
     },
-    changeCurrency: function (data,cur) {
-      console.log(cur)
+    changeCurrency: function (data, cur) {
+
       const c = new Intl.NumberFormat(cur.format, {
         style: "currency",
-        currency:cur.currency
+        currency: cur.currency
       });
 
       return c.format(data);
@@ -475,8 +465,8 @@ export default {
       this.getSum();
     },
     setCurrency(data) {
-     
-      this.currentCurrency=this.currency[data.target.value];
+
+      this.currentCurrency = this.currency[data.target.value];
     },
     setDiscount(data) {
       this.discount = data;

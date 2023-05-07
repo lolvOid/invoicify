@@ -7,6 +7,7 @@ const user = ''
 const stack = computed(() => {
     return store.state.stack
 })
+const siteName = 'Vite App';
 </script>
 
 <template>
