@@ -34,10 +34,10 @@
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Logo</h2>
-         
+
 
           <label class="block mt-5">
-            
+
             <image-input @selected-image="logo" label="Upload Company Logo (1:1)"></image-input>
 
           </label>
@@ -47,7 +47,7 @@
           <h2 class="text-lg font-semibold mb-2">Header</h2>
           <div>
 
-            <input-text :maxLength="10" label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
+            <input-text :maxLength="15" label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
           </div>
           <!-- 
           <div class="mt-2 w-full">
@@ -72,10 +72,31 @@
           </div> -->
 
           <div class="mt-2 ">
-            <label>Due Date:</label>
+            <!-- <label class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Due Date:</label> -->
 
+            <div class="mt-2 ">
 
-            <div class="relative max-w-sm">
+              <input-text :maxLength="10" label="Due Date:" placeholder="DD/MM/YYYY" @dataValue="setDueDate" />
+
+            </div>
+            <!-- <div class="relative max-w-sm">
+              <div class="hidden">
+                <div class="days">
+                  <div
+                    class="days-of-week grid grid-cols-7 mb-1 dow block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm">
+                  </div>
+                  <div
+                    class="datepicker-grid w-64 grid grid-cols-7 block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm h-6 leading-6 text-sm font-medium text-gray-500 light:text-gray-400">
+                  </div>
+                </div>
+                <div class="calendar-weeks">
+                  <div class="days-of-week flex"><span
+                      class="dow h-6 leading-6 text-sm font-medium text-gray-500 light:text-gray-400"></span></div>
+                  <div
+                    class="weeks week block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm">
+                  </div>
+                </div>
+              </div>
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-500 light:text-gray-400" fill="currentColor"
                   viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -84,10 +105,10 @@
                     clip-rule="evenodd"></path>
                 </svg>
               </div>
-              <input datepicker datepicker-autohide type="text"
+              <input type="text" forma datepicker theme="light" datepicker-title="Due Date" datepicker-autohide  datepicker-format="dd/mm/yyyy"
                 class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-                placeholder="Select date">
-            </div>
+                placeholder="Select date"  @="setDueDate"  maxlength="10" v-model="dueDate">
+            </div> -->
           </div>
 
 
@@ -201,15 +222,15 @@
             </div>
             <div class="absolute top-5 right-5 w-auto max-h-full flex flex-col">
 
-              <div class="text-2xl font-bold">INVOICE</div>
+              <div class="text-2xl font-bold text-right">INVOICE</div>
               <div class="text-sm">
-                Invoice No: {{ invoiceNumber }}
+                No: {{ invoiceNumber }}
               </div>
               <div class="text-sm">
                 Date: {{ invoiceDate }}
               </div>
               <div class="text-sm">
-                Due Date: 12345
+                Due: {{ dueDate }}
               </div>
             </div>
 
@@ -308,16 +329,16 @@
 <script>
 import "flowbite/dist/datepicker";
 import html2pdf from "html2pdf.js";
-
+import moment from "moment"
 
 export default {
   name: "HomeView",
- 
+
   data() {
     return {
-      invoiceNumber: `INV-${new Date(Date.now()).getFullYear()}-${new Date(Date.now()).getMonth()}-${new Date(Date.now()).getDate()}-${Math.round(Math.random() * 4000)}`,
+      invoiceNumber: `INV-${moment().format("YYYYMMYY")}-${Math.round(Math.random() * 4000)}`,
       invoiceTo: "Required",
-      invoiceDate: `${new Date(Date.now()).getDate().length > 1 ? new Date(Date.now()).getDate() : "0" + new Date(Date.now()).getDate()}/${new Date(Date.now()).getMonth().length > 1 ? new Date(Date.now()).getMonth() : "0" + new Date(Date.now()).getMonth()}/${new Date(Date.now()).getFullYear()}`,
+      invoiceDate: moment().format("DD/MM/YYYY"),
       emailAddress: "Required",
       phoneNumber: "",
       address: "",
@@ -349,22 +370,22 @@ export default {
 
           },
         },
-        {
-          icon: "fa-solid fa-file-word",
-          name: "Word",
-          link: "#",
-          target: "_self",
-          action: () => {
+        // {
+        //   icon: "fa-solid fa-file-word",
+        //   name: "Word",
+        //   link: "#",
+        //   target: "_self",
+        //   action: () => {
 
-          }
-        },
-        {
-          icon: "fa-brands fa-google-drive",
-          name: "Google Drive",
-          link: "#",
-          target: "_self",
-          action: null,
-        },
+        //   }
+        // },
+        // {
+        //   icon: "fa-brands fa-google-drive",
+        //   name: "Google Drive",
+        //   link: "#",
+        //   target: "_self",
+        //   action: null,
+        // },
         {
           icon: "fa-brands fa-github",
           name: "Github",
@@ -379,6 +400,7 @@ export default {
       subtotal: 0,
       commercialTax: 5,
       discount: 0,
+      dueDate: moment().format("DD/MM/YYYY"),
       currentCurrency: {
 
         format: 'en-us',
@@ -456,6 +478,11 @@ export default {
     },
     setInvoiceNumber(data) {
       this.invoiceNumber = data;
+    },
+    setDueDate(data) {
+      
+      this.dueDate = data;
+
     },
     setInvoiceTo(data) {
       this.invoiceTo = data;
