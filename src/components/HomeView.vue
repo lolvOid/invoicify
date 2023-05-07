@@ -12,7 +12,8 @@
     <ul
       class="md:flex md:items-center md:px-0 px-3 md:pb-0 pb:10 md:static fixed md:text-gray-100 bottom-2  right-2 duration-75 ease-in text-3xl text-gray-800 ">
       <li class="md:mx-4 md:my-0 my-6" v-for="navLink in navLinks" :key="navLink.name">
-        <a :href="navLink.link" :aria-label="navLink.link" class="hover:text-orange-500" @click="navLink.action">
+        <a :href="navLink.link" :aria-label="navLink.link" class="hover:text-orange-500" @click="navLink.action"
+          :target="navLink.target">
 
           <fa-icon :icon=navLink.icon></fa-icon>
         </a>
@@ -56,7 +57,7 @@
           <h2 class="text-lg font-semibold">Header</h2>
           <div>
 
-            <input-text label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
+            <input-text :maxLength="10" label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
           </div>
 
           <div class="mt-2 w-full">
@@ -106,17 +107,19 @@
           <h2 class="text-lg font-semibold">Issue</h2>
           <div class="mt-2 ">
 
-            <input-text label="Invoice To:" placeholder="Name" @dataValue="setInvoiceTo" />
+            <input-text :maxLength="30" label="Invoice To:" placeholder="Name" @dataValue="setInvoiceTo" />
 
           </div>
 
           <div class="mt-2 ">
-            <input-text type="tel" label="Phone:" placeholder="01-2345-56789" @dataValue="setPhoneNumber" />
+            <input-text :maxLength="10" inputType="tel" label="Phone:" placeholder="01-2345-56789"
+              @dataValue="setPhoneNumber" />
           </div>
 
 
           <div class="mt-2 ">
-            <input-text type="email" label="Email:" placeholder="customer@email.com" @dataValue="setEmail" />
+            <input-text :maxLength="30" inputType="email" label="Email:" placeholder="customer@email.com"
+              @dataValue="setEmail" />
           </div>
           <div class="mt-2 ">
             <input-textarea label="Address:" placeholder="Address" @dataValue="setAddress" />
@@ -125,16 +128,52 @@
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Data</h2>
-
+          <div class="mt-2 ">
+            <input-text :maxLength="2" inputType="text" label="Commercial Tax(%):" :placeholder="commercialTax.toString()" @dataValue="setCommercialTax" />
+          </div>
+          <div class="mt-2 ">
+            <input-text :maxLength="2" inputType="text" label="Discount(%):" :placeholder="discount.toString()" @dataValue="setDiscount" />
+          </div>
+          <div class="mt-2">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Currency</label>
+            <select id="currencies"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" @change="setCurrency">
+              <option v-for="c in currency" :key="c.format" :value="c.currency">{{ c.currency }}</option>
+              
+            </select>
+          </div>
+          <button type="button"
+            class="text-gray-900 mt-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 w-full focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ;light:bg-gray-800 ;light:text-white ;light:border-gray-600 ;light:hover:bg-gray-700 ;light:hover:border-gray-600 ;light:focus:ring-gray-700"
+            @click="addNewData">Add New</button>
+          <data-row :itemsData="itemsData" :count="count" @count="setCount" @dataValue="handleDataValue" />
+          <!-- <div class="border-2 bg-white rounded-lg">
+              <div class="relative flex-col flex p-2 relative justify-center ">
+                <span class="absolute top-4 text-base text-lg">Title</span>
+                <a class="hover:cursor-pointer hover:text-red-600 self-end text-xl p-2">
+                  <fa-icon icon="fa-solid fa-multiply"></fa-icon>
+                </a>
+                <div class="mt-2 ">
+                  <input-text type="text" label="Description" placeholder="" />
+                </div>
+                <div class="mt-2">
+                  <input-text type="text" label="Quantity" placeholder="" />
+                </div>
+                <div class="mt-2">
+                  <input-text type="text" label="Price" placeholder="" />
+                </div>
+                
+              </div>
+          </div> -->
         </div>
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold">Payment Information</h2>
           <div class="mt-2 ">
-            <input-text type="text" label="Bank Name:" placeholder="Bank Name" @dataValue="setBankName" />
+            <input-text inputType="text" :maxLength="30" label="Bank Name:" placeholder="Bank Name"
+              @dataValue="setBankName" />
           </div>
           <div class="mt-2 ">
-            <input-text type="text" label="Bank Account No:" placeholder="Bank Account"
+            <input-text inputType="text" :maxLength="30" label="Bank Account No:" placeholder="Bank Account"
               @dataValue="setBankAccountNumber" />
           </div>
 
@@ -149,7 +188,8 @@
           </label>
           <div class="mt-2 ">
             <div class="mt-2 ">
-              <input-text type="text" label="Name" placeholder="Name" @dataValue="setAuthroizedName" />
+              <input-text inputType="text" :maxLength="30" label="Name" placeholder="Name"
+                @dataValue="setAuthroizedName" />
             </div>
           </div>
         </div>
@@ -198,23 +238,58 @@
             </div>
           </div>
           <div class="flex justify-center items-center h-auto mt-7">
-            <table class="shadow-none border-2 bg-white w-full">
-              <tr>
-                <th class="bg-gray-200 border-l-2 border-gray-300  text-center px-2 py-2">No</th>
-                <th class="bg-gray-200 border-l-2 border-gray-300  text-center px-2 py-2">Description</th>
-                <th class="bg-gray-200 border-l-2 border-gray-300  text-center px-2 py-2">Price</th>
-                <th class="bg-gray-200 border-l-2 border-gray-300  text-center px-2 py-2">Qty</th>
-                <th class="bg-gray-200 border-l-2 border-gray-300  text-center px-2 py-2">Amount</th>
-              </tr>
-              <tr>
-                <td class="text-sm border-l-2 text-center px-2 py-2">1</td>
-                <td class="text-sm border-l-2 text-center px-2 py-2">100</td>
-                <td class="text-sm border-l-2 text-center px-2 py-2">Duis elit tempor ullamco minim minim nostrud Lorem.
-                </td>
-                <td class="text-sm border-l-2 text-center px-2 py-2">1</td>
-                <td class="text-sm border-l-2 text-center px-2 py-2">1111</td>
-              </tr>
+
+
+            <table class="w-full text-sm text-left text-gray-500 light:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-100 light:bg-gray-700 light:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-2 py-2 text-left">
+                    Description
+                  </th>
+                  <th scope="col" class="px-2 py-2 text-left">
+                    Price
+                  </th>
+                  <th scope="col" class="px-2 py-2 text-center">
+                    Qty
+                  </th>
+                  <th scope="col" class="px-2 py-2 text-left">
+                    Amount
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <table-row :itemsData="itemsData" :currency="currentCurrency"/>
+
+              </tbody>
+              <tfoot>
+                <tr class="font-semibold text-gray-900 light:text-white border-t-2">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right">Total:</td>
+                  <td class="px-2 py-1 ">{{ changeCurrency(total,currentCurrency) }}</td>
+                </tr>
+
+                <tr class="font-semibold text-gray-900 light:text-white">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right">Subtotal:</td>
+                  <td class="px-2 py-1">{{ changeCurrency(subtotal,currentCurrency) }}</td>
+                </tr>
+                <tr class="font-semibold text-gray-900 light:text-white">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right text-sm">Discount(%):</td>
+                  <td class="px-2 py-1">{{ discount }}</td>
+                </tr>
+                <tr class="font-semibold text-gray-900 light:text-white">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right text-sm">Commercial Tax(%):</td>
+                  <td class="px-2 py-1">{{ commercialTax }}</td>
+                </tr>
+              </tfoot>
             </table>
+
           </div>
 
           <div class="absolute bottom-0 left-0 w-full flex justify-between items-center p-[0.5in] pt-0">
@@ -238,7 +313,7 @@
   </div>
 </template>
 <script>
-
+import "flowbite/dist/datepicker";
 import html2pdf from "html2pdf.js"
 export default {
   name: "HomeView",
@@ -261,12 +336,14 @@ export default {
           icon: "fa-solid fa-print",
           name: "Print",
           link: "#",
+          target: "_self",
           action: null,
         },
         {
           icon: "fa-solid fa-file-pdf",
           name: "PDF",
           link: "#",
+          target: "_self",
           action: () => {
             var element = document.getElementById("document_page");
             var opt = {
@@ -286,6 +363,7 @@ export default {
           icon: "fa-solid fa-file-word",
           name: "Word",
           link: "#",
+          target: "_self",
           action: () => {
 
           }
@@ -294,21 +372,83 @@ export default {
           icon: "fa-brands fa-google-drive",
           name: "Google Drive",
           link: "#",
+          target: "_self",
           action: null,
         },
         {
           icon: "fa-brands fa-github",
           name: "Github",
+          target: "_blank",
           link: "https://github.com/lolvoid/invoicify",
           action: null,
         }
-      ]
+      ],
+      itemsData: [],
+      count: -1,
+      total: 0,
+      subtotal: 0,
+      commercialTax: 5,
+      discount: 0,
+      currentCurrency:{
+        
+          format: 'en-us',
+          currency: 'USD',
+       
+      },
+      currency: {
+        'USD': {
+          format: 'en-us',
+          currency: 'USD',
+        },
+        'GBP': {
+          format: 'en-GB',
+          currency: 'GBP',
+        },
+        'EUR': {
+          format: 'en-DE',
+          currency: 'EUR',
+        },
+        'CNY': {
+          format: 'en-CN',
+          currency: 'CNY',
+        },
+        'SGD': {
+          format: 'en-SG',
+          currency: 'SGD',
+        },
+        'JPY': {
+          format: 'en-JP',
+          currency: 'JPY',
+        },
+        'THB': {
+          format: 'en-TH',
+          currency: 'THB',
+        },
+        'MMK': {
+          format: 'en-MM',
+          currency: 'MMK',
+        },
+        'INR': {
+          format: 'en-IN',
+          currency: 'INR',
+        },
+
+      }
     };
   },
 
   methods: {
     handleNavAction: function (e) {
       this.navAction = e;
+    },
+    changeCurrency: function (data,cur) {
+      console.log(cur)
+      const c = new Intl.NumberFormat(cur.format, {
+        style: "currency",
+        currency:cur.currency
+      });
+
+      return c.format(data);
     },
     exportPDF() {
 
@@ -330,6 +470,18 @@ export default {
     setInvoiceTo(data) {
       this.invoiceTo = data;
     },
+    setCommercialTax(data) {
+      this.commercialTax = data;
+      this.getSum();
+    },
+    setCurrency(data) {
+     
+      this.currentCurrency=this.currency[data.target.value];
+    },
+    setDiscount(data) {
+      this.discount = data;
+      this.getSum();
+    },
     setEmail(data) {
       this.emailAddress = data;
     },
@@ -341,7 +493,55 @@ export default {
     },
     signature(data) {
       this.selectedSignature = data;
-    }
+    },
+    currencyFormat(data) {
+
+    },
+
+    addNewData(e) {
+      e.preventDefault();
+      if (this.count < 10) {
+        this.itemsData.push({
+          id: Math.round(Date.now()) + (this.itemsData.length + 1),
+          title: `Item-${this.count}`,
+          description: '',
+          price: 0,
+          qty: 0,
+          amount: 0,
+        })
+        this.itemsData.sort((a, b) => a.title < b.title ? -1 : 1)
+        localStorage.setItem('itemsData', JSON.stringify(this.itemsData));
+
+        this.count = this.itemsData.length;
+      }
+
+    },
+    getSum() {
+      this.subtotal = 0;
+
+      for (const i in this.itemsData) {
+        this.subtotal += this.itemsData[i].amount;
+      }
+      const promo = (this.subtotal * this.discount / 100);
+      const tax = (this.subtotal * this.commercialTax / 100);
+
+      this.total = (this.subtotal + tax - promo);
+    },
+    setCount(data) {
+      this.count = data;
+
+      this.itemsData.sort();
+    },
+    handleDataValue(value, id, field) {
+
+      const itemIndex = this.itemsData.findIndex(item => item.id === id);
+      if (itemIndex >= 0) {
+        this.itemsData[itemIndex][field] = value;
+        this.itemsData[itemIndex]["amount"] = (this.itemsData[itemIndex]["price"]) * (this.itemsData[itemIndex]["quantity"] == null ? 1 : this.itemsData[itemIndex]["quantity"]);
+        this.getSum();
+      }
+      // this.itemsData[id][field] = value;
+    },
   }
 }
 

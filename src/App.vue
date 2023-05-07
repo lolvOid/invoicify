@@ -11,7 +11,7 @@ const stack = computed(() => {
 
 <template>
    
-    <RouterView class="p-0"></RouterView>
+    <RouterView></RouterView>
     
 </template>
 

@@ -13,7 +13,7 @@
             ImageFileInput
         },
         template:
-        `<img class="w-full h-full object-cover" alt="preview"  :src=imgData />`,
+        `<img class="w-full h-full object-scale-down" alt="preview"  :src=imgData />`,
         
     }
 </script>

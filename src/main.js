@@ -9,13 +9,15 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faGithub, faGoogleDrive } from '@fortawesome/free-brands-svg-icons';
-import { faFileExport, faFilePdf, faFileWord, faPrint, faShare, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faFileExport, faFilePdf, faFileWord, faMultiply, faPlus, faPrint, faShare, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faSave } from '@fortawesome/free-regular-svg-icons'
 import ImageFileInput from "./components/ImageFileInput.vue";
 import ImagePreview from "./components/ImagePreview.vue";
 import InputTextField from "./components/InputTextField.vue";
 import InputTextArea from "./components/InputTextArea.vue";
-library.add(faGithub,faShare,faFileExport,faUpload,faSave,faGoogleDrive,faPrint,faFilePdf,faFileWord)
+import DataRow from "./components/DataRow.vue";
+import TableRow from "./components/TableRow.vue";
+library.add(faGithub,faShare,faFileExport,faUpload,faSave,faGoogleDrive,faPrint,faFilePdf,faFileWord,faTrash,faPlus,faMultiply)
 const app = createApp(App);
 app.use(router);
 app.use(store);
@@ -24,5 +26,7 @@ app.component('image-input',ImageFileInput)
 app.component('image-preview',ImagePreview)
 app.component('input-text',InputTextField)
 app.component('input-textarea',InputTextArea)
+app.component('data-row',DataRow)
+app.component('table-row',TableRow)
 
 app.mount('#app');

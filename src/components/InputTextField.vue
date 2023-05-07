@@ -4,11 +4,15 @@
     </label>
     <input :type="inputType" :id="label"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg f ocus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-         @input="handleValueChange" v-model="inputValue"  :placeholder="placeholder" :value="inputValue">
+         @input="handleValueChange" v-model="inputValue"  :placeholder="placeholder" :value="inputValue" :maxlength="maxLength">
 </template>
 <script>
 export default {
     props: {
+        maxLength:{
+            type:Number,
+            default:10
+        },
         inputType:{
             type:String,
             default:"text"
@@ -25,13 +29,16 @@ export default {
         },
         value: {
             type: String,
-            required: true
-        }
+           
+            default: "",
+        },
+       
     },
+    emits:["dataValue"],
     name: "InputTextField",
     data() {
         return {
-            inputValue: this.value,
+            inputValue: "",
         
         }
     },
