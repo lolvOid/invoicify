@@ -23,7 +23,7 @@ login();
 </script>
 
 <template>
-    <RouterView></RouterView>
+    <RouterView ></RouterView>
 </template>
 
 <style lang="scss">

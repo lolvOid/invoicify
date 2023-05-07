@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="absolute top-0 w-screen  h-[60px] bg-gray-900 z-20 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
+  
+  <div class="absolute top-0 w-screen  h-[60px] bg-gray-900 z-20 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
 
     <div class="flex items-center ">
       <a href="/" class="flex text-xl hover:text-orange-500 hover:cursor-pointer">
@@ -222,7 +222,7 @@
             </div>
             <div class="absolute top-5 right-5 w-auto max-h-full flex flex-col">
 
-              <div class="text-2xl font-bold text-right">INVOICE</div>
+              <div class="text-2xl font-bold text-left">INVOICE</div>
               <div class="text-sm">
                 No: {{ invoiceNumber }}
               </div>
