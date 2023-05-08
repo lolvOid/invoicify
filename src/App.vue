@@ -7,8 +7,8 @@ const user = ''
 const stack = computed(() => {
     return store.state.stack
 })
-const login = () => {
-    event('login', { method: 'Google' })
+const index = () => {
+    event('index', { method: 'Google' })
 }
 const head = () => {
     return {
@@ -19,7 +19,7 @@ const head = () => {
     }
 }
 head();
-login();
+index();
 </script>
 
 <template>

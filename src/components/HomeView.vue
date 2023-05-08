@@ -331,7 +331,7 @@ import "flowbite/dist/datepicker";
 import html2pdf from "html2pdf.js";
 import moment from "moment"
 import logoInvoicify from "../assets/invoicify.png";
-
+import { event } from 'vue-gtag'
 export default {
   name: "HomeView",
  
@@ -368,7 +368,11 @@ export default {
             };
 
 
+
             html2pdf().from(element).set(opt).save();
+          
+            event('exportPDF', { method: 'Google' })
+          
 
           },
         },
