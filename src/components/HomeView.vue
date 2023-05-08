@@ -355,7 +355,7 @@ export default {
         {
           icon: "fa-solid fa-file-pdf",
           name: "PDF",
-          link: "#",
+          link: "javascript:void(0)",
           target: "_self",
           action: () => {
             var element = document.getElementById("document_page");
@@ -379,7 +379,7 @@ export default {
         // {
         //   icon: "fa-solid fa-file-word",
         //   name: "Word",
-        //   link: "#",
+        //   link: "javascript:void(0)",
         //   target: "_self",
         //   action: () => {
 
@@ -388,16 +388,19 @@ export default {
         // {
         //   icon: "fa-brands fa-google-drive",
         //   name: "Google Drive",
-        //   link: "#",
+        //   link: "javascript:void(0)",
         //   target: "_self",
         //   action: null,
         // },
         {
           icon: "fa-brands fa-github",
           name: "Github",
-          target: "_blank",
-          link: "https://github.com/lolvoid/invoicify",
-          action: null,
+          target: "_self",
+          link: "javascript:void(0)",
+          action: ()=>{
+              event('Go to Github', { method: 'Google' })
+              window.open("https://github.com/lolvoid/invoicify","_blank");
+          },
         }
       ],
       itemsData: [],
