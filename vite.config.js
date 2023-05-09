@@ -10,6 +10,7 @@ export default defineConfig({
             svgo: false,
         }),
         VitePWA({
+           
             registerType: 'autoUpdate',
             includeAssets:['logo-192.png'],
             manifest: {
@@ -33,7 +34,11 @@ export default defineConfig({
             injectRegister:'auto',
             devOptions: {
               enabled: true
-            }
+            },
+            workbox: {
+                cleanupOutdatedCaches: false
+            },
+            
           }) 
     ],
     server: {

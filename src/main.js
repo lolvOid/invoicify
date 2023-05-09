@@ -19,6 +19,8 @@ import DataRow from './components/DataRow.vue'
 import TableRow from './components/TableRow.vue'
 import VueGtagPlugin from 'vue-gtag'
 import { createHead } from '@vueuse/head'
+import { registerSW } from 'virtual:pwa-register'
+
 
 library.add(faGithub, faShare, faMoon, faFileExport, faUpload, faSave, faGoogleDrive, faPrint, faFilePdf, faFileWord, faTrash, faPlus, faMultiply)
 
@@ -46,3 +48,7 @@ app.component('data-row', DataRow)
 app.component('table-row', TableRow)
 
 app.mount('#app')
+
+registerSW({
+    onOfflineReady() {},
+  })
