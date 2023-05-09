@@ -12,7 +12,7 @@ export default defineConfig({
         VitePWA({
            
             registerType: 'autoUpdate',
-            includeAssets:['logo-192.png'],
+            includeAssets:['/logo-192.png'],
             manifest: {
                 name: 'INVOICIFY',
                 short_name: 'INVOICIFY',
