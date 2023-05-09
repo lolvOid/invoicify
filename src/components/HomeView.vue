@@ -25,11 +25,7 @@
     <div class="w-full  lg:w-[40%] xl:w[40%] h-[calc(100%-60px)] mt-[60px] p-4 ">
       <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4 overflow-y-auto over bg-slate-50 dark:bg-slate-800">
 
-        <div class="w-full p-4 border-b-2">
-
-          <h2 class="text-lg font-semibold dark:text-white text-black">Options</h2>
-
-        </div>
+        
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold dark:text-white text-black">Logo</h2>
@@ -158,9 +154,10 @@
         </div>
       </form>
     </div>
+
     <div class="w-full  bg-gray-50 dark:bg-slate-800 h-[calc(100%-60px)] mt-[60px]  hidden lg:flex items-center justify-center">
-      <div class="w-full h-full  flex items-center justify-center">
-        <div class="relative shadow-md   sm:w-full sm:h-full  lg:w-[21cm] lg:h-[27.9cm] bg-white p-[0.5in] "
+      <div class="relative w-full h-full  flex items-center justify-center">
+        <div class="relative shadow-md   max-w-full max-h-full  lg:w-[21cm] lg:h-[27.9cm] bg-white p-[0.5in] "
           id="document_page" ref="invoiceContent">
           <div class="relative border-b-2  w-full h-[15%]">
             <div class="absolute top-5 left-5 w-[100px] h-[100px]">
@@ -309,12 +306,15 @@ export default {
           action: () => {
             var element = document.getElementById("document_page");
             const div = document.createElement("div");
+            
             div.style.width="21cm";
             div.style.height="27.9cm";
             div.style.position="relative";
-            div.style.padding="0";
+            
+            div.style.padding="0.5in";
             div.style.margin="0";
-            div.append(element.cloneNode(true));
+            const cloned =  element.cloneNode(true);
+            div.innerHTML += element.innerHTML;
             var opt = {
               margin: 0,
               filename: `${Math.round(Math.random() * 100 * Date.now())}_invoicify.pdf`,
