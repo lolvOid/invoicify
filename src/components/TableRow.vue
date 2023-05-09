@@ -1,6 +1,6 @@
 <template>
-    <tr class="bg-white light:bg-gray-800" v-for="item in itemsData" :key="item.id" v-bind="currency" >
-        <td scope="row" class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap light:text-white">
+    <tr class="bg-white dark:bg-gray-800" v-for="item in itemsData" :key="item.id" v-bind="currency" >
+        <td scope="row" class="px-2 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
         
            {{item.description==""?"Required Description" :item.description}}

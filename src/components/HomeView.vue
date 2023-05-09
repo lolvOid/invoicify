@@ -3,7 +3,7 @@
   <div class="absolute top-0 w-screen  h-[60px] bg-gray-900 z-20 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
 
     <div class="flex items-center ">
-      <a href="/" class="flex text-xl hover:text-orange-500 hover:cursor-pointer">
+      <a href="/" class="flex text-xl hover:text-orange-500  hover:cursor-pointer">
         <img class="h-8 w-auto mr-2" :src='brandLogo' />
         <h2 class="font-bold">INVOICIFY</h2>
       </a>
@@ -21,19 +21,19 @@
     </ul>
   </div>
 
-  <div class="relative  text-gray-900 w-screen flex h-full ">
+  <div class="relative dark:bg-slate-900 bg-slate-50  text-gray-900 w-screen flex h-full ">
 
-    <div class="w-[30%] h-[calc(100%-60px)] mt-[60px] p-4">
-      <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4 overflow-y-auto over">
+    <div class="w-[30%] h-[calc(100%-60px)] mt-[60px] p-4 ">
+      <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4 overflow-y-auto over bg-slate-50 dark:bg-slate-800">
 
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Options</h2>
+          <h2 class="text-lg font-semibold dark:text-white text-black">Options</h2>
 
         </div>
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Logo</h2>
+          <h2 class="text-lg font-semibold dark:text-white text-black">Logo</h2>
 
 
           <label class="block mt-5">
@@ -42,80 +42,30 @@
 
           </label>
         </div>
-        <div class="w-full p-4 border-b-2">
+        <div class="w-full p-4 border-b-2 ">
 
-          <h2 class="text-lg font-semibold mb-2">Header</h2>
+          <h2 class="text-lg font-semibold mb-2 dark:text-white text-black">Header</h2>
           <div>
 
             <input-text :maxLength="15" label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
           </div>
-          <!-- 
-          <div class="mt-2 w-full">
-            <label>Invoice Date:</label>
-
-
-            <div class="relative max-w-sm">
-              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 light:text-gray-400" fill="currentColor"
-                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <input datepicker datepicker-autohide type="text"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-                placeholder="Select date">
-            </div>
-
-
-          </div> -->
+       
 
           <div class="mt-2 ">
-            <!-- <label class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Due Date:</label> -->
-
+        
             <div class="mt-2 ">
 
               <input-text :maxLength="10" label="Due Date:" placeholder="DD/MM/YYYY" @dataValue="setDueDate" />
 
             </div>
-            <!-- <div class="relative max-w-sm">
-              <div class="hidden">
-                <div class="days">
-                  <div
-                    class="days-of-week grid grid-cols-7 mb-1 dow block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm">
-                  </div>
-                  <div
-                    class="datepicker-grid w-64 grid grid-cols-7 block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm h-6 leading-6 text-sm font-medium text-gray-500 light:text-gray-400">
-                  </div>
-                </div>
-                <div class="calendar-weeks">
-                  <div class="days-of-week flex"><span
-                      class="dow h-6 leading-6 text-sm font-medium text-gray-500 light:text-gray-400"></span></div>
-                  <div
-                    class="weeks week block flex-1 leading-9 border-0 rounded-lg cursor-default text-center text-gray-900 font-semibold text-sm">
-                  </div>
-                </div>
-              </div>
-              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 light:text-gray-400" fill="currentColor"
-                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <input type="text" forma datepicker theme="light" datepicker-title="Due Date" datepicker-autohide  datepicker-format="dd/mm/yyyy"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
-                placeholder="Select date"  @="setDueDate"  maxlength="10" v-model="dueDate">
-            </div> -->
+          
           </div>
 
 
         </div>
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Issue</h2>
+          <h2 class="text-lg font-semibold dark:text-white text-black">Issue</h2>
           <div class="mt-2 ">
 
             <input-text :maxLength="30" label="Invoice To:" placeholder="Name" @dataValue="setInvoiceTo" />
@@ -138,7 +88,7 @@
         </div>
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Data</h2>
+          <h2 class="text-lg font-semibold dark:text-white text-black">Data</h2>
           <div class="mt-2 ">
             <input-text :maxLength="2" inputType="text" label="Commercial Tax(%):" :placeholder="commercialTax.toString()"
               @dataValue="setCommercialTax" />
@@ -148,16 +98,16 @@
               @dataValue="setDiscount" />
           </div>
           <div class="mt-2">
-            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 light:text-white">Currency</label>
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Currency</label>
             <select id="currencies"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               @change="setCurrency">
               <option v-for="c in currency" :key="c.format" :value="c.currency">{{ c.currency }}</option>
 
             </select>
           </div>
           <button type="button"
-            class="text-gray-900 mt-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 w-full focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ;light:bg-gray-800 ;light:text-white ;light:border-gray-600 ;light:hover:bg-gray-700 ;light:hover:border-gray-600 ;light:focus:ring-gray-700"
+            class="text-gray-900 mt-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 w-full focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ;dark:bg-gray-800 ;dark:text-white ;dark:border-gray-600 ;dark:hover:bg-gray-700 ;dark:hover:border-gray-600 ;dark:focus:ring-gray-700"
             @click="addNewData">Add New</button>
           <data-row :itemsData="itemsData" :count="count" @count="setCount" @dataValue="handleDataValue" />
           <!-- <div class="border-2 bg-white rounded-lg">
@@ -181,7 +131,7 @@
         </div>
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Payment Information</h2>
+          <h2 class="text-lg font-semibold dark:text-white text-black">Payment Information</h2>
           <div class="mt-2 ">
             <input-text inputType="text" :maxLength="30" label="Bank Name:" placeholder="Bank Name"
               @dataValue="setBankName" />
@@ -194,7 +144,7 @@
         </div>
         <div class="w-full p-4 border-b-2">
 
-          <h2 class="text-lg font-semibold">Authorization</h2>
+          <h2 class="text-lg font-semibold dark:text-white text-black">Authorization</h2>
 
           <label class="block mt-5">
             <span class="sr-only">Signuature</span>
@@ -209,7 +159,7 @@
         </div>
       </form>
     </div>
-    <div class="w-full  bg-gray-50 h-[calc(100%-60px)] mt-[60px] flex items-center justify-center">
+    <div class="w-full  bg-gray-50 dark:bg-slate-800 h-[calc(100%-60px)] mt-[60px] flex items-center justify-center">
       <div class="w-full h-full  flex items-center justify-center">
         <div class="relative shadow-md  md:scale-75 lg:scale-100   w-[21cm] h-[27.9cm] bg-white p-[0.5in] "
           id="document_page" ref="invoiceContent">
@@ -254,8 +204,8 @@
           <div class="flex justify-center items-center h-auto mt-7">
 
 
-            <table class="w-full text-sm text-left text-gray-500 light:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-100 light:bg-gray-700 light:text-gray-400">
+            <table class="w-full text-sm text-left text-gray-500">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
                 <tr>
                   <th scope="col" class="px-2 py-2 text-left">
                     Description
@@ -276,26 +226,26 @@
 
               </tbody>
               <tfoot>
-                <tr class="font-semibold text-gray-900 light:text-white border-t-2">
+                <tr class="font-semibold text-gray-900 border-t-2">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right">Total:</td>
                   <td class="px-2 py-1 ">{{ changeCurrency(total, currentCurrency) }}</td>
                 </tr>
 
-                <tr class="font-semibold text-gray-900 light:text-white">
+                <tr class="font-semibold text-gray-900">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right">Subtotal:</td>
                   <td class="px-2 py-1">{{ changeCurrency(subtotal, currentCurrency) }}</td>
                 </tr>
-                <tr class="font-semibold text-gray-900 light:text-white">
+                <tr class="font-semibold text-gray-900">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right text-sm">Discount(%):</td>
                   <td class="px-2 py-1">{{ discount }}</td>
                 </tr>
-                <tr class="font-semibold text-gray-900 light:text-white">
+                <tr class="font-semibold text-gray-900">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right text-sm">Commercial Tax(%):</td>
@@ -376,22 +326,17 @@ export default {
 
           },
         },
-        // {
-        //   icon: "fa-solid fa-file-word",
-        //   name: "Word",
-        //   link: "javascript:void(0)",
-        //   target: "_self",
-        //   action: () => {
-
-        //   }
-        // },
-        // {
-        //   icon: "fa-brands fa-google-drive",
-        //   name: "Google Drive",
-        //   link: "javascript:void(0)",
-        //   target: "_self",
-        //   action: null,
-        // },
+       
+        {
+          icon: "fa-solid fa-moon",
+          name: "Dark/Light",
+          link: "javascript:void(0)",
+          target: "_self",
+          action: ()=>{
+              const html = document.getElementsByTagName("html")[0];
+              html.classList.toggle("dark");
+          },
+        },
         {
           icon: "fa-brands fa-github",
           name: "Github",

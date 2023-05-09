@@ -9,7 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGithub, faGoogleDrive } from '@fortawesome/free-brands-svg-icons'
-import { faFileExport, faFilePdf, faFileWord, faMultiply, faPlus, faPrint, faShare, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { faFileExport, faFilePdf, faFileWord, faMoon, faMultiply, faPlus, faPrint, faShare, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faSave } from '@fortawesome/free-regular-svg-icons'
 import ImageFileInput from './components/ImageFileInput.vue'
 import ImagePreview from './components/ImagePreview.vue'
@@ -20,7 +20,7 @@ import TableRow from './components/TableRow.vue'
 import VueGtagPlugin from 'vue-gtag'
 import { createHead } from '@vueuse/head'
 
-library.add(faGithub, faShare, faFileExport, faUpload, faSave, faGoogleDrive, faPrint, faFilePdf, faFileWord, faTrash, faPlus, faMultiply)
+library.add(faGithub, faShare, faMoon, faFileExport, faUpload, faSave, faGoogleDrive, faPrint, faFilePdf, faFileWord, faTrash, faPlus, faMultiply)
 
 const gtagOpts = {
     config: {
