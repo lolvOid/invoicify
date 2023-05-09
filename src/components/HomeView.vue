@@ -9,8 +9,7 @@
       </a>
     </div>
 
-    <ul
-      class="md:flex md:items-center md:px-0 px-3 md:pb-0 pb:10 md:static fixed md:text-gray-100 bottom-2  right-2 duration-75 ease-in text-3xl text-gray-800 ">
+    <ul class="md:flex md:items-center md:px-0 px-3 md:pb-0 pb:10 md:static fixed md:text-gray-100 dark:text-gray-50 bottom-0  right-0 duration-75 ease-in text-3xl text-gray-800 ">
       <li class="md:mx-4 md:my-0 my-6" v-for="navLink in navLinks" :key="navLink.name">
         <a :href="navLink.link" :aria-label="navLink.link" class="hover:text-orange-500" @click="navLink.action"
           :target="navLink.target">
@@ -23,7 +22,7 @@
 
   <div class="relative dark:bg-slate-900 bg-slate-50  text-gray-900 w-screen flex h-full ">
 
-    <div class="w-[30%] h-[calc(100%-60px)] mt-[60px] p-4 ">
+    <div class="w-full  lg:w-[40%] xl:w[40%] h-[calc(100%-60px)] mt-[60px] p-4 ">
       <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4 overflow-y-auto over bg-slate-50 dark:bg-slate-800">
 
         <div class="w-full p-4 border-b-2">
@@ -159,9 +158,9 @@
         </div>
       </form>
     </div>
-    <div class="w-full  bg-gray-50 dark:bg-slate-800 h-[calc(100%-60px)] mt-[60px] flex items-center justify-center">
+    <div class="w-full  bg-gray-50 dark:bg-slate-800 h-[calc(100%-60px)] mt-[60px]  hidden lg:flex items-center justify-center">
       <div class="w-full h-full  flex items-center justify-center">
-        <div class="relative shadow-md  md:scale-75 lg:scale-100   w-[21cm] h-[27.9cm] bg-white p-[0.5in] "
+        <div class="relative shadow-md   sm:w-full sm:h-full  lg:w-[21cm] lg:h-[27.9cm] bg-white p-[0.5in] "
           id="document_page" ref="invoiceContent">
           <div class="relative border-b-2  w-full h-[15%]">
             <div class="absolute top-5 left-5 w-[100px] h-[100px]">
@@ -309,6 +308,13 @@ export default {
           target: "_self",
           action: () => {
             var element = document.getElementById("document_page");
+            const div = document.createElement("div");
+            div.style.width="21cm";
+            div.style.height="27.9cm";
+            div.style.position="relative";
+            div.style.padding="0";
+            div.style.margin="0";
+            div.append(element.cloneNode(true));
             var opt = {
               margin: 0,
               filename: `${Math.round(Math.random() * 100 * Date.now())}_invoicify.pdf`,
@@ -319,7 +325,7 @@ export default {
 
 
 
-            html2pdf().from(element).set(opt).save();
+            html2pdf().from(div).set(opt).save();
           
             event('exportPDF', { method: 'Google' })
           
@@ -334,7 +340,9 @@ export default {
           target: "_self",
           action: ()=>{
               const html = document.getElementsByTagName("html")[0];
-              html.classList.toggle("dark");
+              
+              html.classList.contains("light")? html.classList.replace("light", "dark"): html.classList.replace( "dark","light");
+              
           },
         },
         {
