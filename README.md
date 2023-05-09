@@ -1,5 +1,7 @@
 # INVOICIFY
 
+https://simple-invoicify.vercel.app
+
 ****Simple invoice builder****
 Author: Freddie Lin
 
