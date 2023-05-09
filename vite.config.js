@@ -29,7 +29,39 @@ export default defineConfig({
                     sizes: '512x512',
                     type: 'image/png'
                   }
-                ]
+                ],
+                start_url:"/",
+                display:"portrait",
+                background_color:"#ffffff",
+                lang:"en",
+                display_override:"standalone",
+                share_target:{
+                    action:"create",
+                    params:{
+                        title:"INVOICIFY",
+                        url:"/"
+                    }
+                },
+                categories:"Productivity",
+                
+                shortcuts:{
+                    name: 'INVOICIFY',
+                    short_name: 'INVOICIFY',
+                    description: 'Simple invoice maker',
+                    icons: [
+                        {
+                          src: 'logo-192.png',
+                          sizes: '192x192',
+                          type: 'image/png'
+                        },
+                        {
+                          src: 'invoicify.png',
+                          sizes: '512x512',
+                          type: 'image/png'
+                        }
+                      ],
+                      url:"/"
+                }
               },
             injectRegister:'auto',
             devOptions: {
