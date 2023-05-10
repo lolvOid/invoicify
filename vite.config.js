@@ -44,24 +44,7 @@ export default defineConfig({
                 },
                 categories:"Productivity",
                 
-                shortcuts:{
-                    name: 'INVOICIFY',
-                    short_name: 'INVOICIFY',
-                    description: 'Simple invoice maker',
-                    icons: [
-                        {
-                          src: 'logo-192.png',
-                          sizes: '192x192',
-                          type: 'image/png'
-                        },
-                        {
-                          src: 'invoicify.png',
-                          sizes: '512x512',
-                          type: 'image/png'
-                        }
-                      ],
-                      url:"/"
-                }
+               
               },
             injectRegister:'auto',
             devOptions: {
