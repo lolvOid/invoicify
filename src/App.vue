@@ -49,15 +49,15 @@ useHead({
         },
         {
             property:"og:image",
-            content:"_invoicify.png"
+            content:"https://simple-invoicify.vercel.app/_invoicify.png"
         }
     ]
 })
-const index = () => {
-    event('index', { method: 'Google' })
-}
 
-index();
+event('index', { method: 'Google' })
+
+
+
 </script>
 
 <template>

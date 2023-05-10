@@ -307,7 +307,52 @@ import InputTextArea from "./InputTextArea.vue";
 import TableRow from "./TableRow.vue";
 import DataRow from "./DataRow.vue";
 import DataPayment from "./DataPayment.vue";
-
+import {useHead} from "@unhead/vue";
+useHead({
+    title:"INVOICIFY",
+    meta:[
+        {
+            name:"title",
+            content:"INVOICIFY",
+        } ,
+        {
+            name:"application-name",
+            content:"INVOICIFY"
+        },
+        {
+            name:"author",
+            content:"freddielin"
+        },
+        {
+            name:"google-site-verification",
+            content:"gGf7v3gULvhF0PL7rGfU8Xzejkn0IdEZuI1dc_1bZEE"
+        },
+        {
+            name:"description",
+            content:"Simple Invoice Maker"
+        },
+        {   
+            property:"og:type",
+            content:"website"
+        },
+        {
+            property:"og:url",
+            content:"https://simple-invoicify.vercel.app"
+        },
+        {
+            property:"og:title",
+            content:"INVOICIFY"
+        },
+        {
+            property:"og:description",
+            content:"Simple Invoice Maker"
+        },
+        {
+            property:"og:image",
+            content:"https://simple-invoicify.vercel.app/_invoicify.png"
+        }
+    ]
+})
 export default {
   name: "HomeView",
   components: {
