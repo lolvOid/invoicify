@@ -49,7 +49,7 @@ useHead({
         },
         {
             property:"og:image",
-            content:""
+            content:"_invoicify.png"
         }
     ]
 })
