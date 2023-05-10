@@ -31,7 +31,7 @@ useHead({
             name:"description",
             content:"Simple Invoice Maker"
         },
-        {
+        {   
             property:"og:type",
             content:"website"
         },
