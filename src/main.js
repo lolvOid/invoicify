@@ -14,7 +14,7 @@ import { faFileExport, faFilePdf, faFileWord, faMoon, faMultiply, faPlus, faPrin
 import { faSave } from '@fortawesome/free-regular-svg-icons'
 import VueGtagPlugin from 'vue-gtag'
 
-import { registerSW } from 'virtual:pwa-register'
+// import { registerSW } from 'virtual:pwa-register'
 
 
 library.add(faGithub, faShare, faMoon, faFileExport, faUpload, faSave, faGoogleDrive, faPrint, faFilePdf, faFileWord, faTrash, faPlus, faMultiply)
@@ -40,6 +40,6 @@ app.component('fa-icon', FontAwesomeIcon)
 
 app.mount('#app')
 
-registerSW({
-    onOfflineReady() {},
-  })
+// registerSW({
+//     onOfflineReady() {},
+//   })

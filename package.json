@@ -13,6 +13,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/vue-fontawesome": "^3.0.3",
         "@heroicons/vue": "^2.0.17",
+        "@rollup/plugin-terser": "^0.4.1",
         "@unhead/vue": "^1.1.26",
         "@vueuse/head": "^1.1.26",
         "docxtemplater": "^3.37.2",
