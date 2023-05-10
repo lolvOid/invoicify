@@ -1,6 +1,6 @@
 <template>
-  
-  <div class="absolute top-0 w-screen  h-[60px] bg-gray-900 z-20 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
+  <div
+    class="absolute top-0 w-screen  h-[60px] bg-gray-900 z-20 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
 
     <div class="flex items-center ">
       <a href="/" class="flex text-xl hover:text-orange-500  hover:cursor-pointer">
@@ -9,7 +9,8 @@
       </a>
     </div>
 
-    <ul class="md:flex md:items-center md:px-0 px-3 md:pb-0 pb:10 md:static fixed md:text-gray-100 dark:text-gray-50 bottom-0  right-0 duration-75 ease-in text-3xl text-gray-800 ">
+    <ul
+      class="md:flex md:items-center md:px-0 px-3 md:pb-0 pb:10 md:static fixed md:text-gray-100 dark:text-gray-50 bottom-0  right-0 duration-75 ease-in text-3xl text-gray-800 ">
       <li class="md:mx-4 md:my-0 my-6" v-for="navLink in navLinks" :key="navLink.name">
         <a :href="navLink.link" :aria-label="navLink.link" class="hover:text-orange-500" @click="navLink.action"
           :target="navLink.target">
@@ -25,7 +26,7 @@
     <div class="w-full  lg:w-[40%] xl:w[40%] h-[calc(100%-60px)] mt-[60px] p-4 ">
       <form class="bg-white   shadow-xl w-full h-full rounded-xl p-4 overflow-y-auto over bg-slate-50 dark:bg-slate-800">
 
-        
+
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold dark:text-white text-black">Logo</h2>
@@ -44,16 +45,16 @@
 
             <input-text :maxLength="15" label="Invoice No:" placeholder="1111-111-11" @dataValue="setInvoiceNumber" />
           </div>
-       
+
 
           <div class="mt-2 ">
-        
+
             <div class="mt-2 ">
 
               <input-text :maxLength="10" label="Due Date:" placeholder="DD/MM/YYYY" @dataValue="setDueDate" />
 
             </div>
-          
+
           </div>
 
 
@@ -78,7 +79,7 @@
               @dataValue="setEmail" />
           </div>
           <div class="mt-2 ">
-            <input-textarea label="Address:" placeholder="Address" @dataValue="setAddress" />
+            <input-textarea label="Address:" placeholder="Address" @dataValue="setAddress" :maxlength="50" />
           </div>
         </div>
         <div class="w-full p-4 border-b-2">
@@ -89,8 +90,19 @@
               @dataValue="setCommercialTax" />
           </div>
           <div class="mt-2 ">
-            <input-text :maxLength="2" inputType="text" label="Discount(%):" :placeholder="discount.toString()"
+            <input-text :maxLength="4" inputType="text" label="Discount(%):" :placeholder="discount.toString()"
               @dataValue="setDiscount" />
+          </div>
+          <div class="mt-2 ">
+            <input-text :maxLength="16" inputType="text" label="Paid:" :placeholder="paid.toString()"
+              @dataValue="setPaidAmount" />
+          </div>
+          <div class="mt-2 ">
+            <input-text :maxLength="16" inputType="text" label="Advanced Payment:"
+              :placeholder="advancedPayment.toString()" @dataValue="setAdvancePayment" />
+          </div>
+          <div class="mt-2 ">
+            <input-textarea label="Note:" placeholder="Note" @dataValue="setNote"  :maxlength="200"/>
           </div>
           <div class="mt-2">
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Currency</label>
@@ -105,36 +117,17 @@
             class="text-gray-900 mt-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 w-full focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ;dark:bg-gray-800 ;dark:text-white ;dark:border-gray-600 ;dark:hover:bg-gray-700 ;dark:hover:border-gray-600 ;dark:focus:ring-gray-700"
             @click="addNewData">Add New</button>
           <data-row :itemsData="itemsData" :count="count" @count="setCount" @dataValue="handleDataValue" />
-          <!-- <div class="border-2 bg-white rounded-lg">
-              <div class="relative flex-col flex p-2 relative justify-center ">
-                <span class="absolute top-4 text-base text-lg">Title</span>
-                <a class="hover:cursor-pointer hover:text-red-600 self-end text-xl p-2">
-                  <fa-icon icon="fa-solid fa-multiply"></fa-icon>
-                </a>
-                <div class="mt-2 ">
-                  <input-text type="text" label="Description" placeholder="" />
-                </div>
-                <div class="mt-2">
-                  <input-text type="text" label="Quantity" placeholder="" />
-                </div>
-                <div class="mt-2">
-                  <input-text type="text" label="Price" placeholder="" />
-                </div>
-                
-              </div>
-          </div> -->
+
         </div>
         <div class="w-full p-4 border-b-2">
 
           <h2 class="text-lg font-semibold dark:text-white text-black">Payment Information</h2>
-          <div class="mt-2 ">
-            <input-text inputType="text" :maxLength="30" label="Bank Name:" placeholder="Bank Name"
-              @dataValue="setBankName" />
-          </div>
-          <div class="mt-2 ">
-            <input-text inputType="text" :maxLength="30" label="Bank Account No:" placeholder="Bank Account"
-              @dataValue="setBankAccountNumber" />
-          </div>
+          <button type="button"
+            class="text-gray-900 mt-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 w-full focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ;dark:bg-gray-800 ;dark:text-white ;dark:border-gray-600 ;dark:hover:bg-gray-700 ;dark:hover:border-gray-600 ;dark:focus:ring-gray-700"
+            @click="addNewPayment">Add Payment Information</button>
+          <data-payment :paymentData="paymentData" :count="paymentCount" @count="setPaymentCount"
+            @dataValue="handlePaymentValue" />
+
 
         </div>
         <div class="w-full p-4 border-b-2">
@@ -155,7 +148,8 @@
       </form>
     </div>
 
-    <div class="w-full  bg-gray-50 dark:bg-slate-800 h-[calc(100%-60px)] mt-[60px]  hidden lg:flex items-center justify-center">
+    <div
+      class="w-full  bg-gray-50 dark:bg-slate-800 h-[calc(100%-60px)] mt-[60px]  hidden lg:flex items-center justify-center">
       <div class="relative w-full h-full  flex items-center justify-center">
         <div class="relative shadow-md   max-w-full max-h-full  lg:w-[21cm] lg:h-[27.9cm] bg-white p-[0.5in] "
           id="document_page" ref="invoiceContent">
@@ -193,7 +187,7 @@
                 Email: {{ emailAddress }}
               </div>
               <div class="text-sm">
-                Address: {{ address }}
+                Address: <span class="break-all text-sm whitespace-pre-line"> {{ address }}</span>
               </div>
             </div>
           </div>
@@ -225,15 +219,8 @@
                 <tr class="font-semibold text-gray-900 border-t-2">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
                   <th scope="row" class="px-2 py-1 text-sm"></th>
-                  <td class="px-2 py-1 text-right">Total:</td>
-                  <td class="px-2 py-1 ">{{ changeCurrency(total, currentCurrency) }}</td>
-                </tr>
-
-                <tr class="font-semibold text-gray-900">
-                  <th scope="row" class="px-2 py-1 text-sm"></th>
-                  <th scope="row" class="px-2 py-1 text-sm"></th>
                   <td class="px-2 py-1 text-right">Subtotal:</td>
-                  <td class="px-2 py-1">{{ changeCurrency(subtotal, currentCurrency) }}</td>
+                  <td class="px-2 py-1 ">{{ changeCurrency(subtotal, currentCurrency) }}</td>
                 </tr>
                 <tr class="font-semibold text-gray-900">
                   <th scope="row" class="px-2 py-1 text-sm"></th>
@@ -247,23 +234,57 @@
                   <td class="px-2 py-1 text-right text-sm">Commercial Tax(%):</td>
                   <td class="px-2 py-1">{{ commercialTax }}</td>
                 </tr>
+                <tr class="font-semibold text-gray-900">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right">Total:</td>
+                  <td class="px-2 py-1">{{ changeCurrency(total, currentCurrency) }}</td>
+                </tr>
+                <tr class="font-semibold text-gray-900">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right">Advance Amount:</td>
+                  <td class="px-2 py-1 ">{{ changeCurrency(advancedPayment, currentCurrency) }}</td>
+                </tr>
+                <tr class="font-semibold text-gray-900">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right">Paid:</td>
+                  <td class="px-2 py-1">{{ changeCurrency(paid, currentCurrency) }}</td>
+                </tr>
+                <tr class="font-semibold text-gray-900">
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <th scope="row" class="px-2 py-1 text-sm"></th>
+                  <td class="px-2 py-1 text-right">Total Due:</td>
+                  <td class="px-2 py-1">{{ changeCurrency(totalDue, currentCurrency) }}</td>
+                </tr>
+
               </tfoot>
             </table>
 
           </div>
 
-          <div class="absolute bottom-0 left-0 w-full flex justify-between items-center p-[0.5in] pt-0">
-            <div class="flex flex-col h-full items-start ">
-              <div class="font-bold text-base">Payment Information</div>
-              <div class="text-sm">Bank Name: {{ bankName }}</div>
-              <div class="text-sm">Bank Account No: {{ bankAccount }}</div>
-            </div>
-            <div class="flex flex-col h-full items-center ">
-              <div class="p-2 w-[100px] h-[100px]">
-                <image-preview :imgData="selectedSignature" />
+          <div class="absolute bottom-0 left-0 w-full  p-[0.5in] pt-0">
+              <div class="w-5/12 mb-1">
+                <div class="font-bold text-base">Notes:</div>
+                <div class="break-all text-sm whitespace-pre-line">{{ textNote }}</div>
+              
               </div>
-              <div class=" text-sm">{{ authorziedName }}</div>
+            <div class="flex  h-full w-full justify-between">
+
+              <div class="flex flex-col items-start ">
+                <div class="font-bold text-base">Payment Information</div>
+                <payment-row :items-data=paymentData />
+              </div>
+
+              <div class="flex flex-col h-full items-center ">
+                <div class="p-2 w-[100px] h-[100px]">
+                  <image-preview :imgData="selectedSignature" />
+                </div>
+                <div class=" text-sm">{{ authorziedName }}</div>
+              </div>
             </div>
+
           </div>
 
         </div>
@@ -278,9 +299,28 @@ import html2pdf from "html2pdf.js";
 import moment from "moment"
 import logoInvoicify from "../assets/invoicify.png";
 import { event } from 'vue-gtag'
+import PaymentRow from "./PaymentRow.vue";
+import ImageFileInput from "./ImageFileInput.vue";
+import ImagePreviewVue from "./ImagePreview.vue";
+import InputTextField from "./InputTextField.vue";
+import InputTextArea from "./InputTextArea.vue";
+import TableRow from "./TableRow.vue";
+import DataRow from "./DataRow.vue";
+import DataPayment from "./DataPayment.vue";
+
 export default {
   name: "HomeView",
- 
+  components: {
+    "payment-row": PaymentRow,
+    "table-row": TableRow,
+    "data-payment": DataPayment,
+    "data-row": DataRow,
+    "input-text": InputTextField,
+    "input-textarea": InputTextArea,
+    "image-input": ImageFileInput,
+    "image-preview": ImagePreviewVue,
+
+  },
   data() {
     return {
       invoiceNumber: `INV-${moment().format("YYYYMMYY")}-${Math.round(Math.random() * 4000)}`,
@@ -296,6 +336,8 @@ export default {
       selectedSignature: "https://via.placeholder.com/100x100/ccc.png",
       navAction: null,
       brandLogo: logoInvoicify,
+      advancedPayment: 0,
+      paid: 0,
       navLinks: [
 
         {
@@ -306,14 +348,14 @@ export default {
           action: () => {
             var element = document.getElementById("document_page");
             const div = document.createElement("div");
-            
-            div.style.width="21cm";
-            div.style.height="27.9cm";
-            div.style.position="relative";
-            
-            div.style.padding="0.5in";
-            div.style.margin="0";
-            const cloned =  element.cloneNode(true);
+
+            div.style.width = "21cm";
+            div.style.height = "27.9cm";
+            div.style.position = "relative";
+
+            div.style.padding = "0.5in";
+            div.style.margin = "0";
+            const cloned = element.cloneNode(true);
             div.innerHTML += element.innerHTML;
             var opt = {
               margin: 0,
@@ -326,23 +368,23 @@ export default {
 
 
             html2pdf().from(div).set(opt).save();
-          
+
             event('exportPDF', { method: 'Google' })
-          
+
 
           },
         },
-       
+
         {
           icon: "fa-solid fa-moon",
           name: "Dark/Light",
           link: "javascript:void(0)",
           target: "_self",
-          action: ()=>{
-              const html = document.getElementsByTagName("html")[0];
-              
-              html.classList.contains("light")? html.classList.replace("light", "dark"): html.classList.replace( "dark","light");
-              
+          action: () => {
+            const html = document.getElementsByTagName("html")[0];
+
+            html.classList.contains("light") ? html.classList.replace("light", "dark") : html.classList.replace("dark", "light");
+
           },
         },
         {
@@ -350,15 +392,18 @@ export default {
           name: "Github",
           target: "_self",
           link: "javascript:void(0)",
-          action: ()=>{
-              event('Go to Github', { method: 'Google' })
-              window.open("https://github.com/lolvoid/invoicify","_blank");
+          action: () => {
+            event('Go to Github', { method: 'Google' })
+            window.open("https://github.com/lolvoid/invoicify", "_blank");
           },
         }
       ],
       itemsData: [],
+      paymentData: [],
+      paymentCount: -1,
       count: -1,
       total: 0,
+      totalDue: 0,
       subtotal: 0,
       commercialTax: 5,
       discount: 0,
@@ -369,6 +414,7 @@ export default {
         currency: 'USD',
 
       },
+      textNote:"",
       currency: {
         'USD': {
           format: 'en-us',
@@ -446,11 +492,22 @@ export default {
       this.dueDate = data;
 
     },
+    setNote(data){
+      this.textNote = data;
+    },
     setInvoiceTo(data) {
       this.invoiceTo = data;
     },
     setCommercialTax(data) {
       this.commercialTax = data;
+      this.getSum();
+    },
+    setAdvancePayment(data) {
+      this.advancedPayment = data;
+      this.getSum();
+    },
+    setPaidAmount(data) {
+      this.paid = data;
       this.getSum();
     },
     setCurrency(data) {
@@ -476,7 +533,21 @@ export default {
     currencyFormat(data) {
 
     },
+    addNewPayment(e) {
+      e.preventDefault();
+      if (this.paymentCount < 10) {
+        this.paymentData.push({
+          id: Math.round(Date.now()) + (this.paymentData.length + 1),
+          title: `Title`,
+          description: 'Description',
 
+        })
+        this.paymentData.sort((a, b) => a.title < b.title ? -1 : 1)
+        localStorage.setItem('paymentData', JSON.stringify(this.paymentData));
+
+        this.paymentCount = this.paymentData.length;
+      }
+    },
     addNewData(e) {
       e.preventDefault();
       if (this.count < 10) {
@@ -492,12 +563,13 @@ export default {
         localStorage.setItem('itemsData', JSON.stringify(this.itemsData));
 
         this.count = this.itemsData.length;
+        this.getSum();
       }
 
     },
     getSum() {
       this.subtotal = 0;
-
+      this.totalDue = 0;
       for (const i in this.itemsData) {
         this.subtotal += this.itemsData[i].amount;
       }
@@ -505,11 +577,25 @@ export default {
       const tax = (this.subtotal * this.commercialTax / 100);
 
       this.total = (this.subtotal + tax - promo);
+      this.totalDue = this.total - this.paid;
+    },
+    setPaymentCount(data) {
+      this.paymentCount = data;
+      this.paymentData.sort();
     },
     setCount(data) {
       this.count = data;
 
       this.itemsData.sort();
+    },
+    handlePaymentValue(value, id, field) {
+      const itemIndex = this.paymentData.findIndex(item => item.id === id);
+      if (itemIndex >= 0) {
+
+        this.paymentData[itemIndex][field] = value;
+
+
+      }
     },
     handleDataValue(value, id, field) {
 
