@@ -4,6 +4,7 @@ https://simple-invoicify.vercel.app
 
 ****Simple invoice builder****
 Author: Freddie Lin
+![2023-05-22_01h07_49](https://github.com/lolvOid/invoicify/assets/24497721/6ee97722-1ca7-48b6-b075-f27bf9d057bc)
 
 ### Stack
 
